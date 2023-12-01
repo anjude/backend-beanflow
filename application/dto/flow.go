@@ -59,3 +59,7 @@ type GetNoteDetailReq struct {
 }
 
 type GetNoteDetailResp NoteView
+
+type DelNoteReq struct {
+	NoteId int64 `json:"note_id" binding:"required"`
+}

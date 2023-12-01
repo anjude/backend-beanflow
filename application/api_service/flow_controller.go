@@ -16,6 +16,7 @@ type IFlowController interface {
 	GetUserNotes(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
 	GetNoteList(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
 	GetNoteDetail(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
+	DelNote(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
 }
 
 type FlowController struct {
@@ -58,6 +59,15 @@ func (u FlowController) GetNoteList(ctx *beanctx.BizContext) (interface{}, *bean
 func (u FlowController) GetNoteDetail(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
 	req := ctx.GetReqParam().(dto.GetNoteDetailReq)
 	resp, bizErr := u.flowService.GetNoteDetail(ctx, req)
+	if bizErr != nil {
+		return nil, bizErr
+	}
+	return resp, nil
+}
+
+func (u FlowController) DelNote(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
+	req := ctx.GetReqParam().(dto.DelNoteReq)
+	resp, bizErr := u.flowService.DelNote(ctx, req)
 	if bizErr != nil {
 		return nil, bizErr
 	}

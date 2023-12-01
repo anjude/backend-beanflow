@@ -12,6 +12,7 @@ type IFlowRepo interface {
 	GetUserNotes(ctx *beanctx.BizContext, openid string, offset, limit int64) ([]*do.Note, error)
 	GetNoteList(ctx *beanctx.BizContext, openid string, isPublic int8, offset, limit int64) ([]*do.Note, error)
 	GetNoteById(ctx *beanctx.BizContext, id int64) (*do.Note, error)
+	DelNoteById(ctx *beanctx.BizContext, id int64) error
 }
 
 type FlowRepo struct {
@@ -74,4 +75,12 @@ func (u *FlowRepo) GetNoteById(ctx *beanctx.BizContext, id int64) (*do.Note, err
 		return nil, err
 	}
 	return noteDO, nil
+}
+
+func (u *FlowRepo) DelNoteById(ctx *beanctx.BizContext, id int64) error {
+	err := ctx.GetDb().Where("id = ?", id).Delete(&entity.Note{}).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }

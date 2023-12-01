@@ -14,6 +14,7 @@ type IFlowService interface {
 	GetUserNotes(ctx *beanctx.BizContext, req dto.GetUserNotesReq) (interface{}, *beanerr.BizError)
 	GetNoteList(ctx *beanctx.BizContext, req dto.GetNoteListReq) (interface{}, *beanerr.BizError)
 	GetNoteDetail(ctx *beanctx.BizContext, req dto.GetNoteDetailReq) (interface{}, *beanerr.BizError)
+	DelNote(ctx *beanctx.BizContext, req dto.DelNoteReq) (interface{}, *beanerr.BizError)
 }
 
 type FlowService struct {
@@ -75,4 +76,21 @@ func (u FlowService) GetNoteDetail(ctx *beanctx.BizContext, req dto.GetNoteDetai
 		return nil, beanerr.DBError.SetDetail(err.Error())
 	}
 	return dto.BuildNoteView(note), nil
+}
+
+func (u FlowService) DelNote(ctx *beanctx.BizContext, req dto.DelNoteReq) (interface{}, *beanerr.BizError) {
+	note, err := u.flowRepo.GetNoteById(ctx, req.NoteId)
+	if err != nil {
+		ctx.Log().Errorf("get note detail error: %v", err)
+		return nil, beanerr.DBError.SetDetail(err.Error())
+	}
+	if note.Openid != ctx.GetOpenid() {
+		return nil, beanerr.NoPermission.SetDetail("can only delete your own note")
+	}
+	err = u.flowRepo.DelNoteById(ctx, req.NoteId)
+	if err != nil {
+		ctx.Log().Errorf("del note error: %v", err)
+		return nil, beanerr.DBError.SetDetail(err.Error())
+	}
+	return nil, nil
 }

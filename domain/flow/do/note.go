@@ -26,6 +26,7 @@ func (n Note) ToEntity() (*entity.Note, error) {
 		return nil, err
 	}
 	return &entity.Note{
+		ID:       n.ID,
 		Openid:   n.Openid,
 		Content:  n.Content,
 		IsPublic: n.IsPublic,

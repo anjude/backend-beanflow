@@ -22,4 +22,5 @@ func (a ApiService) RegisterRouter(engine *gin.Engine) {
 	flowGroup.GET("/note/user_notes", middleware.HandleRequest(a.flow.GetUserNotes, dto.GetUserNotesReq{}))
 	flowGroup.GET("/note/list", middleware.HandleRequest(a.flow.GetNoteList, dto.GetNoteListReq{}))
 	flowGroup.GET("/note/detail", middleware.HandleRequest(a.flow.GetNoteDetail, dto.GetNoteDetailReq{}))
+	flowGroup.POST("/note/del", middleware.HandleRequest(a.flow.DelNote, dto.DelNoteReq{}))
 }
