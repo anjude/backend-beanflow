@@ -1,0 +1,28 @@
+run:
+  exclude:
+    - '**/*_test.go'
+    - docs
+
+linters-settings:
+  # 设置 linters 的全局配置选项
+  golint:
+    min-confidence: 0.9
+  govet:
+    check-shadowing: true
+  staticcheck:
+    # 设置静态检查规则的严格级别
+
+# 设置并发的 goroutine 数量
+concurrency: 4
+
+# 设置是否在执行检查时打印详细的信息
+verbose: false
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gofmt
+    - goimports
+    - gosimple
+    - staticcheck
