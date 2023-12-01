@@ -19,6 +19,7 @@
 
 # Go workspace file
 go.work
+NUL
 
 assets/
 /configs/config.local.yaml
