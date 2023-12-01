@@ -3,9 +3,10 @@ package redis_client
 import (
 	"context"
 	"fmt"
-	"github.com/anjude/backend-beanflow/infrastructure/config"
 	"log"
 	"time"
+
+	"github.com/anjude/backend-beanflow/infrastructure/config"
 
 	redis "github.com/redis/go-redis/v9"
 )

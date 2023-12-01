@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/anjude/backend-beanflow/infrastructure/enum"
 	"os"
 	"strings"
+
+	"github.com/anjude/backend-beanflow/infrastructure/enum"
 )
 
 type Config struct {

@@ -2,8 +2,9 @@ package mysql_client
 
 import (
 	"fmt"
-	"github.com/anjude/backend-beanflow/infrastructure/config"
 	"log"
+
+	"github.com/anjude/backend-beanflow/infrastructure/config"
 
 	"github.com/pkg/errors"
 	"gorm.io/driver/mysql"

@@ -3,13 +3,14 @@ package middleware
 import (
 	"errors"
 	"fmt"
+	"net/http"
+	"strings"
+	"time"
+
 	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 	"github.com/anjude/backend-beanflow/infrastructure/beanerr"
 	"github.com/anjude/backend-beanflow/infrastructure/beanlog"
 	"github.com/anjude/backend-beanflow/infrastructure/global"
-	"net/http"
-	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 

@@ -2,15 +2,16 @@ package boostrap
 
 import (
 	"fmt"
+	"log"
+	"os"
+	"strings"
+
 	"github.com/anjude/backend-beanflow/infrastructure/config"
 	"github.com/anjude/backend-beanflow/infrastructure/constant"
 	"github.com/anjude/backend-beanflow/infrastructure/enum"
 	"github.com/anjude/backend-beanflow/infrastructure/global"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"log"
-	"os"
-	"strings"
 )
 
 func InitConfig() error {

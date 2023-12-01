@@ -2,10 +2,11 @@ package user_repo
 
 import (
 	"encoding/json"
+	"time"
+
 	"github.com/anjude/backend-beanflow/domain/user/do"
 	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 	"github.com/anjude/backend-beanflow/infrastructure/client/redis_client"
-	"time"
 )
 
 type UserRedisRepo struct {

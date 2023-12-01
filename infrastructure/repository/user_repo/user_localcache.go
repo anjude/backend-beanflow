@@ -1,11 +1,12 @@
 package user_repo
 
 import (
+	"time"
+
 	"github.com/anjude/backend-beanflow/domain/user/do"
 	"github.com/anjude/backend-beanflow/infrastructure/beancache"
 	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 	"github.com/pkg/errors"
-	"time"
 )
 
 var KeyNotFound = errors.New("key not found")

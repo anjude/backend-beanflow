@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
-	"github.com/anjude/backend-beanflow/infrastructure/utils"
 	"testing"
 	"time"
+
+	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
+	"github.com/anjude/backend-beanflow/infrastructure/utils"
 
 	"github.com/golang-jwt/jwt/v4"
 )

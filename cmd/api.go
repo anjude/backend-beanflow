@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/anjude/backend-beanflow/infrastructure/boostrap"
 	"github.com/anjude/backend-beanflow/infrastructure/global"
 	"github.com/anjude/backend-beanflow/interfaces"
 	"github.com/gin-gonic/gin"
-	"log"
 )
 
 func main() {

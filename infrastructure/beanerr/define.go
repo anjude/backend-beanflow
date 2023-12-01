@@ -33,3 +33,11 @@ func (b *BizError) AppendMsg(s string) *BizError {
 		Detail:  b.Detail,
 	}
 }
+
+func (b *BizError) SetDetail(s string) *BizError {
+	return &BizError{
+		ErrCode: b.ErrCode,
+		Msg:     b.Msg,
+		Detail:  s,
+	}
+}

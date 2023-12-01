@@ -1,4 +1,4 @@
-package service
+package user_service
 
 import (
 	"github.com/anjude/backend-beanflow/infrastructure/repository/user_repo"

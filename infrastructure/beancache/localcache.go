@@ -1,8 +1,9 @@
 package beancache
 
 import (
-	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 	"time"
+
+	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 
 	"github.com/patrickmn/go-cache"
 )

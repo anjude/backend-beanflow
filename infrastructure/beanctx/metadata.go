@@ -30,7 +30,7 @@ func newMetadata(ctx *gin.Context) *metadata {
 	if !exists {
 		return &m
 	}
-	jwtClaims := value.(JwtClaims)
+	jwtClaims := value.(*JwtClaims)
 	m.Openid = jwtClaims.Openid
 	m.AppId = jwtClaims.AppId
 	return &m

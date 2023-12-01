@@ -2,8 +2,10 @@ package middleware
 
 import (
 	"fmt"
+
 	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 	"github.com/anjude/backend-beanflow/infrastructure/beanerr"
+	"github.com/anjude/backend-beanflow/infrastructure/beanlog"
 	"github.com/anjude/backend-beanflow/infrastructure/utils/json_util"
 	"github.com/gin-gonic/gin"
 )
@@ -19,14 +21,14 @@ func HandleRequest(handler func(ctx *beanctx.BizContext) (interface{}, *beanerr.
 	return func(ctx *gin.Context) {
 		var resp *HttpResponse
 		var bizErr *beanerr.BizError
-		bizCtx := beanctx.NewContext(ctx)
 		// 先校验jwt，再校验参数，jwt里有用户数据
 		if err := ValidJwt(ctx); err != nil {
 			resp = genHttpResp(beanerr.JwtTokenError.CloneWithError(err), nil)
-			bizCtx.Log().Infof(GetRequestLog(ctx, nil, resp))
+			beanlog.Errorf(GetRequestLog(ctx, nil, resp))
 			ctx.JSON(0, resp)
 			return
 		}
+		bizCtx := beanctx.NewContext(ctx)
 		if len(req) != 0 {
 			if bizErr = bizCtx.ParseRequest(req[0]); bizErr != nil {
 				// 报错直接返回

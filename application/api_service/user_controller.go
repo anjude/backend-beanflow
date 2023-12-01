@@ -2,7 +2,7 @@ package api_service
 
 import (
 	"github.com/anjude/backend-beanflow/application/dto"
-	"github.com/anjude/backend-beanflow/domain/user/service"
+	"github.com/anjude/backend-beanflow/domain/user/user_service"
 	"github.com/anjude/backend-beanflow/infrastructure/beanctx"
 	"github.com/anjude/backend-beanflow/infrastructure/beanerr"
 )
@@ -15,7 +15,7 @@ type IUserController interface {
 }
 
 type UserController struct {
-	userService service.IUserService
+	userService user_service.IUserService
 }
 
 func (u UserController) Login(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
