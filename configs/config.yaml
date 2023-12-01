@@ -1,0 +1,16 @@
+app:
+  port: 80
+  jwt_key: coder_bean  # 关注微信公众号 【豆小匠Coding】
+  app_id: your_app_id # 请填写你的小程序 app_id
+  app_secret: your_app_secret # 请填写你的小程序的 app_secret
+db_config:
+  user: root
+  password: 123456
+  address: localhost:3306
+  database: bean_flow
+redis_config:
+  enable: false # 是否启用 redis
+  addr: localhost:6379
+  password:
+  db: 0
+  pool_size: 100

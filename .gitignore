@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+assets/
+/configs/config.local.yaml
+.idea/
