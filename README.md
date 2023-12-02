@@ -38,7 +38,11 @@
 公众号内回复【**beanflow**】可获取项目设计文档，联系我+v可加入交流群，一起学习进步~
 
 ![qrcode_for_coder_bean.jpg](docs%2Fimg%2Fqrcode_for_coder_bean.jpg)
-# 6. 版本
+# 6. 版本和体验地址
+仅为教学Demo，如失效请联系我参与体验版。
+
+![beanflow.jpg](docs%2Fimg%2Fbeanflow.jpg)
+
 
 |  版本号   |     日期     |    说明     |
 |:------:|:----------:|:---------:|
@@ -50,5 +54,6 @@
 - Gin框架：https://github.com/gin-gonic/gin
 - DDD模板：https://github.dev/takashabe/go-ddd-sample
 - 代码目录结构参考：https://github.com/heynickc/awesome-ddd#go
+- Go标准目录：https://github.com/golang-standards/project-layout/blob/master/README_zh.md
 
 本项目仅做学习交流使用，如作它用所承受的法律责任一概与作者无关。
