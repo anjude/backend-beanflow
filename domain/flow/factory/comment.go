@@ -12,5 +12,6 @@ func BuildCommentFromEntity(comment *entity.Comment) (*do.Comment, error) {
 		CreateTime: comment.CreateTime,
 		UpdateTime: comment.UpdateTime,
 		Content:    comment.Content,
+		NoteId:     comment.NoteId,
 	}, nil
 }

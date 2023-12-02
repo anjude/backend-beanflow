@@ -28,9 +28,10 @@ type NoteView struct {
 	Content    string `json:"content"` //  笔记内容
 	LikeNum    int64  `json:"like_num"`
 	IsPublic   int8   `json:"is_public"` //  是否公开
+	Liked      bool   `json:"liked"`
 }
 
-func BuildNoteView(note *do.Note) *NoteView {
+func BuildNoteView(note *do.Note, liked bool) *NoteView {
 	return &NoteView{
 		ID:         note.ID,
 		Openid:     note.Openid,
@@ -39,6 +40,7 @@ func BuildNoteView(note *do.Note) *NoteView {
 		Content:    note.Content,
 		LikeNum:    note.Extra.LikeNum,
 		IsPublic:   note.IsPublic,
+		Liked:      liked,
 	}
 }
 
@@ -62,4 +64,9 @@ type GetNoteDetailResp NoteView
 
 type DelNoteReq struct {
 	NoteId int64 `json:"note_id" binding:"required"`
+}
+
+type LikeNoteReq struct {
+	NoteId int64 `json:"note_id" binding:"required"`
+	Like   *int8 `json:"like" binding:"required"`
 }

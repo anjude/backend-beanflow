@@ -17,6 +17,10 @@ type IFlowController interface {
 	GetNoteList(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
 	GetNoteDetail(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
 	DelNote(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
+	LikeNote(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
+
+	AddComment(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
+	GetCommentList(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError)
 }
 
 type FlowController struct {
@@ -68,6 +72,36 @@ func (u FlowController) GetNoteDetail(ctx *beanctx.BizContext) (interface{}, *be
 func (u FlowController) DelNote(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
 	req := ctx.GetReqParam().(dto.DelNoteReq)
 	resp, bizErr := u.flowService.DelNote(ctx, req)
+	if bizErr != nil {
+		return nil, bizErr
+	}
+	return resp, nil
+}
+
+func (u FlowController) LikeNote(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
+	req := ctx.GetReqParam().(dto.LikeNoteReq)
+	resp, bizErr := u.flowService.LikeNote(ctx, req)
+	if bizErr != nil {
+		return nil, bizErr
+	}
+	return resp, nil
+}
+
+func (u FlowController) AddComment(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
+	req := ctx.GetReqParam().(dto.AddCommentReq)
+	resp, bizErr := u.flowService.AddComment(ctx, req)
+	if bizErr != nil {
+		return nil, bizErr
+	}
+	return resp, nil
+}
+
+func (u FlowController) GetCommentList(ctx *beanctx.BizContext) (interface{}, *beanerr.BizError) {
+	req := ctx.GetReqParam().(dto.GetCommentListReq)
+	if req.Limit == 0 {
+		req.Limit = constant.DefaultLimit
+	}
+	resp, bizErr := u.flowService.GetCommentList(ctx, req)
 	if bizErr != nil {
 		return nil, bizErr
 	}

@@ -16,8 +16,9 @@ import (
 type BizContext struct {
 	*gin.Context
 	*metadata // 请求通用参数
-	request   interface{}
+	db        *gorm.DB
 	log       *beanlog.BeanLogger
+	request   interface{}
 }
 
 func NewContext(c *gin.Context) *BizContext {
@@ -72,6 +73,10 @@ func (b *BizContext) ParseRequest(req interface{}) *beanerr.BizError {
 }
 
 func (b *BizContext) GetDb() *gorm.DB {
+	// 开启事务时，使用传入的事务
+	if b.db != nil {
+		return b.db
+	}
 	return global.MysqlDB.GetDb()
 }
 
@@ -82,4 +87,35 @@ func (b *BizContext) Log() *beanlog.BeanLogger {
 // GetReqParam 获取解析&校验后的参数
 func (b *BizContext) GetReqParam() interface{} {
 	return b.request
+}
+
+// RunInTransaction 不支持嵌套事务
+func (b *BizContext) RunInTransaction(fn func() error) error {
+	if b.db != nil {
+		return fn()
+	}
+	// 开始事务
+	b.db = b.GetDb().Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			// 发生 panic，回滚事务
+			b.db.Rollback()
+			panic(r) // 继续抛出 panic
+		}
+	}()
+
+	// 执行传入的函数，并将事务对象作为参数传递
+	if err := fn(); err != nil {
+		// 如果发生错误，回滚事务
+		b.db.Rollback()
+		return err
+	}
+
+	// 提交事务
+	if err := b.db.Commit().Error; err != nil {
+		b.db.Rollback()
+		return err
+	}
+
+	return nil
 }

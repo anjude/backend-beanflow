@@ -6,3 +6,10 @@ const (
 	PrivateNote NotePublic = iota
 	PublicNote
 )
+
+type NoteLike int8
+
+const (
+	DislikeNote NoteLike = iota
+	LikeNote
+)
